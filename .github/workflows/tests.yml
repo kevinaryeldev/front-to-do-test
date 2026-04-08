@@ -10,6 +10,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         browser: [chrome, firefox, edge]
 
@@ -23,9 +24,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Run E2E tests (${{ matrix.browser }})
-        run: mvn test -Dbrowser=${{ matrix.browser }
+        run: mvn test -Dbrowser=${{ matrix.browser }}
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           APP_USER: ${{ secrets.APP_USER }}
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
-          HEADLESS: true
+          HEADLESS: "true"
+          TIMEOUT: "10"
