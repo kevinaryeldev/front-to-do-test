@@ -26,6 +26,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: Build
+        shell: bash
         run: mvn compile test-compile -B -q
 
   smoke:
@@ -41,6 +42,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: Smoke tests
+        shell: bash
         run: mvn test -Dtest="all.RunCucumberTest" -Dcucumber.filter.tags="@smoke" -B
         env:
           BASE_URL: ${{ inputs.base_url || secrets.BASE_URL }}
@@ -73,6 +75,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: E2e tests (${{ matrix.browser }})
+        shell: bash
         run: mvn test -Dtest="all.RunCucumberTest" -Dcucumber.filter.tags="@e2e and not @smoke" -Dbrowser=${{ matrix.browser }} -B
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
@@ -101,6 +104,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
       - name: Golden Path test
+        shell: bash
         run: mvn test -Dtest="all.RunCucumberTest" -Dcucumber.filter.tags="@goldenPath" -B
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
