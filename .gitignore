@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 .kotlin
 config-dev.properties
+.test-output
 
 ### IntelliJ IDEA ###
 .idea/*
