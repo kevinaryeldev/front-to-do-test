@@ -1,14 +1,13 @@
 package com.whatsnext.steps;
 
-
-import com.whatsnext.steps.context.ScenarioContext;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
+import com.whatsnext.util.AuthHelper;
 import com.whatsnext.pages.DashboardPage;
 import com.whatsnext.config.DriverManager;
-import org.openqa.selenium.JavascriptExecutor;
+import com.whatsnext.steps.context.ScenarioContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,8 +21,7 @@ public class DashboardSteps {
     @Dado("que estou logado no dashboard")
     public void goToDashboardPageLogged() {
         DriverManager.navigateTo("/");
-        ((JavascriptExecutor) DriverManager.getDriver())
-                .executeScript("localStorage.setItem('whatsnext_token','fake-token'); localStorage.setItem('whatsnext_user','admin');");
+        AuthHelper.bypassLogin();
         DriverManager.navigateTo("/dashboard");
     }
 

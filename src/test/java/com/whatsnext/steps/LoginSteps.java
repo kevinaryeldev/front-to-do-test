@@ -18,6 +18,7 @@ public class LoginSteps {
     public LoginSteps(ScenarioContext context){
         this.loginPage = context.loginPage;
     }
+
     private final ConfigReader config = ConfigReader.getInstance();
 
     @Dado("que estou na página de login")

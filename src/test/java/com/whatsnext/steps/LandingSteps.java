@@ -1,12 +1,12 @@
 package com.whatsnext.steps;
 
-import com.whatsnext.steps.context.ScenarioContext;
 import io.cucumber.java.pt.Dado;
-import io.cucumber.java.pt.Quando;
 import io.cucumber.java.pt.Entao;
-import com.whatsnext.config.DriverManager;
+import io.cucumber.java.pt.Quando;
+import com.whatsnext.util.AuthHelper;
 import com.whatsnext.pages.LandingPage;
-import org.openqa.selenium.JavascriptExecutor;
+import com.whatsnext.config.DriverManager;
+import com.whatsnext.steps.context.ScenarioContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,6 +17,7 @@ public class LandingSteps {
     public LandingSteps(ScenarioContext ctx) {
         this.landingPage = ctx.landingPage;
     }
+
     @Dado("que estou na landing page sem autenticação")
     public void landingPageNoAuth() {
         DriverManager.navigateTo("/");
@@ -25,8 +26,7 @@ public class LandingSteps {
     @Dado("que estou na landing page autenticado")
     public void landingPageWithAuth() {
         DriverManager.navigateTo("/");
-        ((JavascriptExecutor) DriverManager.getDriver())
-                .executeScript("localStorage.setItem('whatsnext_token', 'fake-token');");
+        AuthHelper.bypassLogin();
         DriverManager.getDriver().navigate().refresh();
     }
 
