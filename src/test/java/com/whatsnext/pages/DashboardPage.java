@@ -58,7 +58,7 @@ public class DashboardPage extends BasePage {
         return this;
     }
 
-    public DashboardPage createTask(String title, String note, String urgency) {
+    public DashboardPage createTask(String title, String note, String urgency, int expectedTaskCount) {
         openNewTaskDrawer();
         fillTitle(title);
         if (note != null && !note.isBlank()) {
@@ -66,7 +66,7 @@ public class DashboardPage extends BasePage {
         }
         selectUrgency(urgency);
         submitTask();
-        waitUntilGone(INPUT_TITLE);
+        waitForCardCount(expectedTaskCount);
         return this;
     }
 
@@ -110,6 +110,13 @@ public class DashboardPage extends BasePage {
 
     public DashboardPage filterBy(String filterValue) {
         click("filter-" + filterValue);
+        return this;
+    }
+
+    public DashboardPage waitForCardCount(int expected) {
+        getWait().until(driver ->
+                countElements(TODO_CARD) == expected
+        );
         return this;
     }
 

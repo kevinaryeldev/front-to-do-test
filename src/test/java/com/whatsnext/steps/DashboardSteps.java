@@ -13,6 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DashboardSteps {
 
+    private int taskCount = 0;
+
     private final DashboardPage dashboardPage;
 
     public DashboardSteps(ScenarioContext ctx) {
@@ -27,7 +29,7 @@ public class DashboardSteps {
 
     @Quando("crio uma tarefa com título {string} nota {string} e urgência {string}")
     public void createTask(String titulo, String nota, String urgencia) {
-        dashboardPage.createTask(titulo, nota.isEmpty() ? null : nota, urgencia);
+        dashboardPage.createTask(titulo, nota.isEmpty() ? null : nota, urgencia, ++taskCount);
     }
 
     @Quando("abro o drawer de nova tarefa")
