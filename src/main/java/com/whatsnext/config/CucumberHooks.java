@@ -5,6 +5,8 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
 public class CucumberHooks {
 
@@ -19,8 +21,10 @@ public class CucumberHooks {
             if (scenario.isFailed()) {
                 try {
                     if (DriverManager.getDriver() instanceof TakesScreenshot ts) {
-                        byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
-                        scenario.attach(screenshot, "image/png", "Falha - " + scenario.getName());
+                        String base64Screenshot = ts.getScreenshotAs(OutputType.BASE64);
+                        ExtentCucumberAdapter.getCurrentStep()
+                                .fail("Screenshot da falha",
+                                        MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
                     }
                 } catch (Exception e) {
                     System.err.println("Falha ao capturar screenshot: " + e.getMessage());
