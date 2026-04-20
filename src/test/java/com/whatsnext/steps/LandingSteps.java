@@ -1,5 +1,6 @@
 package com.whatsnext.steps;
 
+import com.whatsnext.steps.context.ScenarioContext;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Quando;
 import io.cucumber.java.pt.Entao;
@@ -11,8 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LandingSteps {
 
-    private final LandingPage landingPage = new LandingPage();
+    private final LandingPage landingPage;
 
+    public LandingSteps(ScenarioContext ctx) {
+        this.landingPage = ctx.landingPage;
+    }
     @Dado("que estou na landing page sem autenticação")
     public void landingPageNoAuth() {
         DriverManager.navigateTo("/");

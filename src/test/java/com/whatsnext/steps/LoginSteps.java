@@ -1,5 +1,6 @@
 package com.whatsnext.steps;
 
+import com.whatsnext.steps.context.ScenarioContext;
 import com.whatsnext.util.ConfigReader;
 import com.whatsnext.config.DriverManager;
 import com.whatsnext.pages.LoginPage;
@@ -12,7 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginSteps {
 
-    private final LoginPage loginPage = new LoginPage();
+    private final LoginPage loginPage;
+
+    public LoginSteps(ScenarioContext context){
+        this.loginPage = context.loginPage;
+    }
     private final ConfigReader config = ConfigReader.getInstance();
 
     @Dado("que estou na página de login")

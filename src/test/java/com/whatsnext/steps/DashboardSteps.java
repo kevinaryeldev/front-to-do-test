@@ -1,6 +1,7 @@
 package com.whatsnext.steps;
 
 
+import com.whatsnext.steps.context.ScenarioContext;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
@@ -13,8 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DashboardSteps {
 
-    private final DashboardPage dashboardPage = new DashboardPage();
+    private final DashboardPage dashboardPage;
 
+    public DashboardSteps(ScenarioContext ctx) {
+        this.dashboardPage = ctx.dashboardPage;
+    }
     @Dado("que estou logado no dashboard")
     public void goToDashboardPageLogged() {
         DriverManager.navigateTo("/");
