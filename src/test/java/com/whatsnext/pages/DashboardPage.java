@@ -1,5 +1,6 @@
 package com.whatsnext.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class DashboardPage extends BasePage {
@@ -24,7 +25,6 @@ public class DashboardPage extends BasePage {
     private static final String STAT_PENDING     = "stat-pending";
     private static final String STAT_DONE        = "stat-done";
     private static final String STAT_URGENT      = "stat-urgent";
-
 
     public DashboardPage openNewTaskDrawer() {
         click(BTN_NEW_TASK);
@@ -86,11 +86,11 @@ public class DashboardPage extends BasePage {
     }
 
     public String getFirstCardUrgency() {
-        return getFirstCard().getAttribute("data-urgency");
+        return getFirstCard().getDomAttribute("data-urgency");
     }
 
     public boolean isFirstCardDone() {
-        return "true".equals(getFirstCard().getAttribute("data-done"));
+        return "true".equals(getFirstCard().getDomAttribute("data-done"));
     }
 
     public DashboardPage toggleFirstCard() {
