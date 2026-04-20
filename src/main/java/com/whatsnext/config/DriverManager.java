@@ -2,6 +2,7 @@ package com.whatsnext.config;
 
 import com.whatsnext.util.ConfigReader;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -63,7 +64,7 @@ public final class DriverManager {
 
 
     public static void clearLocalStorage() {
-        ((org.openqa.selenium.JavascriptExecutor) getDriver())
+        ((JavascriptExecutor) getDriver())
                 .executeScript("window.localStorage.clear();");
     }
 }
