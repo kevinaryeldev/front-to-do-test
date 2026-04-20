@@ -1,17 +1,14 @@
 package com.whatsnext.pages;
 
-import com.whatsnext.config.DriverManager;
-import com.whatsnext.util.ByTestId;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
+import com.whatsnext.util.ByTestId;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import com.whatsnext.config.DriverManager;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public abstract class BasePage {
@@ -51,7 +48,6 @@ public abstract class BasePage {
     protected void click(String testId) {
         click(byTestId(testId));
     }
-
 
     protected void type(By locator, String text) {
         WebElement element = find(locator);
@@ -130,6 +126,12 @@ public abstract class BasePage {
     }
 
     protected void waitUntilGone(String testId) {
-        getWait().until(ExpectedConditions.invisibilityOfElementLocated(byTestId(testId)));
+        waitUntilGone(byTestId(testId));
+    }
+
+    protected void waitUntilGone(By locator) {
+        if(isPresent(locator)){
+            getWait().until(ExpectedConditions.numberOfElementsToBe(locator,0));
+        }
     }
 }
