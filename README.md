@@ -1,4 +1,11 @@
 # front-to-do-test
+# front-to-do-test
+
+[![E2E Tests](https://github.com/kevinaryeldev/front-to-do-test/actions/workflows/tests.yml/badge.svg)](https://github.com/kevinaryeldev/front-to-do-test/actions/workflows/tests.yml)
+![Java](https://img.shields.io/badge/Java-21-007396?logo=openjdk&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-4.27-43B02A?logo=selenium&logoColor=white)
+![Cucumber](https://img.shields.io/badge/Cucumber-7.20-23D96C?logo=cucumber&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-3.x-C71A36?logo=apachemaven&logoColor=white)
 
 Suíte de testes E2E para o projeto [front-to-do](https://github.com/kevinaryeldev/front-to-do), uma aplicação de gerenciamento de tarefas construída em React.
 
