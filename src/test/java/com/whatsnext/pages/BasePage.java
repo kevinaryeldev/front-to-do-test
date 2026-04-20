@@ -130,8 +130,6 @@ public abstract class BasePage {
     }
 
     protected void waitUntilGone(By locator) {
-        if(isPresent(locator)){
-            getWait().until(ExpectedConditions.numberOfElementsToBe(locator,0));
-        }
+        getWait().until(ExpectedConditions.numberOfElementsToBe(locator,0));
     }
 }

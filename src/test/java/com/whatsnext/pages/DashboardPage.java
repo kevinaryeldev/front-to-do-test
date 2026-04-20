@@ -1,6 +1,5 @@
 package com.whatsnext.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class DashboardPage extends BasePage {
@@ -59,14 +58,14 @@ public class DashboardPage extends BasePage {
     }
 
     public DashboardPage createTask(String title, String note, String urgency, int expectedTaskCount) {
-        openNewTaskDrawer();
-        fillTitle(title);
+        openNewTaskDrawer().fillTitle(title);
         if (note != null && !note.isBlank()) {
             fillNote(note);
         }
-        selectUrgency(urgency);
-        submitTask();
-        waitForCardCount(expectedTaskCount);
+        selectUrgency(urgency).
+                submitTask().
+                waitForCardCount(expectedTaskCount).
+                waitUntilGone(INPUT_TITLE);
         return this;
     }
 

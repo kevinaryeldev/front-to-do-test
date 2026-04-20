@@ -87,7 +87,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: report-functional-${{ matrix.browser }}
+          name: report-e2e-${{ matrix.browser }}
           path: target/reports/extent-report.html
           retention-days: 30
 
