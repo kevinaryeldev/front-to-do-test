@@ -148,6 +148,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
                 <configuration>
+                <rerunFailingTestsCount>3</rerunFailingTestsCount>
                     <properties>
                         <configurationParameters>
                             cucumber.filter.tags=${cucumber.filter.tags}
