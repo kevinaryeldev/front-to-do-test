@@ -21,7 +21,6 @@ public final class DriverManager {
         ConfigReader config = ConfigReader.getInstance();
         int timeout = Integer.parseInt(config.get("timeout.seconds", "10"));
         driver = DriverFactory.createDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(timeout));
         driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(timeout));
         wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
