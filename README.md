@@ -1,5 +1,4 @@
 # front-to-do-test
-# front-to-do-test
 
 [![E2E Tests](https://github.com/kevinaryeldev/front-to-do-test/actions/workflows/tests.yml/badge.svg)](https://github.com/kevinaryeldev/front-to-do-test/actions/workflows/tests.yml)
 ![Java](https://img.shields.io/badge/Java-21-007396?logo=openjdk&logoColor=white)
